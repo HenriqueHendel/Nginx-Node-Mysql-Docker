@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  node:
+    container_name: node
+    build:
+      context: .
+    volumes:
+      - ./app:/src/app
+    ports:
+      - 3333:3333
+    tty: true
+    networks:
+      - challenge
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    command: --innodb-use-native-aio=0
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_USER=challenge
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=challenge
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - challenge
+
+networks:
+  challenge:
+    driver: bridge
