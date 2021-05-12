@@ -4,9 +4,11 @@ RUN apt-get update && apt-get install vim -y
 
 WORKDIR /src/app
 
-COPY ./app .
+COPY ./package.json .
 
 RUN npm install
+
+COPY ./app .
 
 RUN npm install -g nodemon
 
