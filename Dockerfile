@@ -1,14 +1,12 @@
-FROM node:12.17
+FROM node
 
 RUN apt-get update && apt-get install vim -y
 
 WORKDIR /src/app
 
-COPY ./package.json .
+COPY ./app .
 
 RUN npm install
-
-COPY ./app .
 
 RUN npm install -g nodemon
 

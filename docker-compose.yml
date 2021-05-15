@@ -17,6 +17,7 @@ services:
       context: .
     volumes:
       - ./app:/src/app
+      - ./src/app/node_modules
     expose:
       - "3333"
     tty: true
